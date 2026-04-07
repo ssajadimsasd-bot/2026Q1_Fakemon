@@ -1088,26 +1088,28 @@ h2, h1 { scroll-margin-top: 24px; }
 
     <div class="callout warn" style="margin:14px 0;"><span class="ci">⚠️</span> JSON is picky! Every quote, comma, and bracket must be in exactly the right place. If the game won't load your Fakemon, look for a missing comma or mismatched bracket.</div>
 
-    <div class="code-wrap"><pre
-><span class="cp">{</span>
+    <div style="position: relative; margin: 12px 0;">
+      <button id="copyJsonBtn" style="position: absolute; top: 12px; right: 12px; background: var(--card); color: white; border: none; border-radius: 8px; padding: 8px 16px; font-family: var(--font-b); font-weight: 600; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; z-index: 10; transition: all 0.1s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+        <span>📋</span> Copy JSON
+      </button>
+      <div class="code-wrap" style="margin-top: 0;">
+        <pre id="jsonTemplate" style="margin: 0;"><span class="cp">{</span>
   <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"yourfakemon"</span><span class="cp">,</span>
   <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"YourFakemon"</span><span class="cp">,</span>
   <span class="ck">"createdBy"</span><span class="cp">:</span> <span class="cs">"Your Full Name"</span><span class="cp">,</span>
   <span class="ck">"emoji"</span><span class="cp">:</span> <span class="cs">"🐲"</span><span class="cp">,</span>
   <span class="ck">"type"</span><span class="cp">:</span> <span class="cs">"Fire"</span><span class="cp">,</span>
 
-  <span class="cc">// The five stats — adjust these numbers to build your Fakemon's personality</span>
-  <span class="ck">"hp"</span><span class="cp">:</span> <span class="cn">100</span><span class="cp">,</span>       <span class="cc">// Health: how much damage you can take (80-140)</span>
-  <span class="ck">"power"</span><span class="cp">:</span> <span class="cn">100</span><span class="cp">,</span>    <span class="cc">// Power: scales your damage output (80-120)</span>
-  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cn">90</span><span class="cp">,</span>     <span class="cc">// Speed: who goes first on tied move speed (60-120)</span>
-  <span class="ck">"defense"</span><span class="cp">:</span> <span class="cn">10</span><span class="cp">,</span>  <span class="cc">// Defense: % damage reduction from incoming hits (0-40)</span>
-  <span class="ck">"accuracy"</span><span class="cp">:</span> <span class="cn">90</span><span class="cp">,</span> <span class="cc">// Accuracy: base % chance your moves will hit (70-100)</span>
+  <span class="ck">"hp"</span><span class="cp">:</span> <span class="cn">100</span><span class="cp">,</span>
+  <span class="ck">"power"</span><span class="cp">:</span> <span class="cn">100</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cn">90</span><span class="cp">,</span>
+  <span class="ck">"defense"</span><span class="cp">:</span> <span class="cn">10</span><span class="cp">,</span>
+  <span class="ck">"accuracy"</span><span class="cp">:</span> <span class="cn">90</span><span class="cp">,</span>
 
   <span class="ck">"description"</span><span class="cp">:</span> <span class="cs">"A short description of your Fakemon."</span><span class="cp">,</span>
 
   <span class="ck">"moves"</span><span class="cp">: [</span>
 
-    <span class="cc">// Move 1: A damage move with a status effect</span>
     <span class="cp">{</span>
       <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"move_one"</span><span class="cp">,</span>
       <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"🔥 Move Name"</span><span class="cp">,</span>
@@ -1118,7 +1120,6 @@ h2, h1 { scroll-margin-top: 24px; }
       <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0.35</span>
     <span class="cp">},</span>
 
-    <span class="cc">// Move 2: A plain fast attack</span>
     <span class="cp">{</span>
       <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"move_two"</span><span class="cp">,</span>
       <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"⚔️ Quick Slash"</span><span class="cp">,</span>
@@ -1129,7 +1130,6 @@ h2, h1 { scroll-margin-top: 24px; }
       <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0</span>
     <span class="cp">},</span>
 
-    <span class="cc">// Move 3: A heal move (negative damage = heals you!)</span>
     <span class="cp">{</span>
       <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"move_three"</span><span class="cp">,</span>
       <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"💊 Heal Move"</span><span class="cp">,</span>
@@ -1140,7 +1140,6 @@ h2, h1 { scroll-margin-top: 24px; }
       <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0</span>
     <span class="cp">},</span>
 
-    <span class="cc">// Move 4: A pure status move (no damage)</span>
     <span class="cp">{</span>
       <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"move_four"</span><span class="cp">,</span>
       <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"😵 Confuse Ray"</span><span class="cp">,</span>
@@ -1151,13 +1150,56 @@ h2, h1 { scroll-margin-top: 24px; }
       <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">1.0</span>
     <span class="cp">}</span>
 
-    <span class="cc">// Add more moves here, up to 8 total!</span>
-    <span class="cc">// Remember: put a comma after every } EXCEPT the last one.</span>
-
   <span class="cp">]</span>
-<span class="cp">}</span></pre></div>
+<span class="cp">}</span></pre>
+      </div>
+    </div>
   </div>
 
+  <script>
+    // Copy button functionality
+    (function() {
+      const copyBtn = document.getElementById('copyJsonBtn');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', async function() {
+          const preElement = document.getElementById('jsonTemplate');
+          if (!preElement) return;
+          
+          // Get the raw JSON text without any syntax highlighting spans
+          const rawText = preElement.innerText || preElement.textContent;
+          
+          try {
+            await navigator.clipboard.writeText(rawText);
+            
+            // Show success feedback
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<span>✅</span> Copied!';
+            copyBtn.style.background = '#22c55e';
+            
+            setTimeout(() => {
+              copyBtn.innerHTML = originalText;
+              copyBtn.style.background = 'var(--card)';
+            }, 2000);
+          } catch (err) {
+            // Fallback for older browsers
+            const textarea = document.createElement('textarea');
+            textarea.value = rawText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            
+            copyBtn.innerHTML = '<span>✅</span> Copied!';
+            copyBtn.style.background = '#22c55e';
+            setTimeout(() => {
+              copyBtn.innerHTML = '<span>📋</span> Copy JSON';
+              copyBtn.style.background = 'var(--card)';
+            }, 2000);
+          }
+        });
+      }
+    })();
+  </script>
   <!-- ══ 9. ADDING TO GAME ═══════════════════════════════════════════════════ -->
   <div class="section" id="s9">
     <div class="section-header">
